@@ -1,0 +1,492 @@
+<html>
+<head>
+    <title>extdirect.django example</title>
+
+    
+    <!-- Include Ext scripts from CDN -->
+   
+    <!-- 'http://extjs.cachefly.net/ext-3.3.1'  -->
+    <script type="text/javascript" src="{{ STATIC_URL }}/bootstrap.js"></script> 
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/resources/css/ext-all.css" /> 
+    
+   
+    <!-- include Ext.ux.AwesomeCombo -->
+    {% with 'https://github.com/revolunet/Ext.ux.AwesomeCombo/raw/master' as AWESOME_SOURCE %}
+    <script type="text/javascript" src="{{ AWESOME_SOURCE }}/src/Ext.ux.AwesomeCombo.js"></script>
+    <script type="text/javascript" src="{{ AWESOME_SOURCE }}/src/Ext.ux.PagingMemoryProxy.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ AWESOME_SOURCE }}/resources/css/Ext.ux.AwesomeCombo.css" />
+    {% endwith %}
+
+    
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/RowEditor.css" /> 
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/CheckColumn.js"></script> 
+    <script type="text/javascript"  src = "{{ STATIC_URL }}/js/Ext.ux.grid.RowEditor.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/Ext.django.js"></script>
+    <script src="{% url directProvider %}"></script>
+    
+
+    <!-- SyntaxHighlighter -->
+    {% with STATIC_URL|add:'/js/syntaxhighlighter_3.0.83' as HIGHLIGHTER_SOURCE %} 
+    <script type="text/javascript" src="{{ HIGHLIGHTER_SOURCE }}/scripts/shCore.js"></script>
+    <script type="text/javascript" src="{{ HIGHLIGHTER_SOURCE }}/scripts/shBrushJScript.js"></script>
+    <link href="{{ HIGHLIGHTER_SOURCE }}/styles/shCore.css" rel="stylesheet" type="text/css" />
+    <link href="{{ HIGHLIGHTER_SOURCE }}/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+    {% endwith %}
+    
+    <!-- Ext.ux.Message -->
+    <script type="text/javascript" src="https://github.com/revolunet/Ext.ux.Message/raw/master/src/Ext.ux.Message.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://github.com/revolunet/Ext.ux.Message/raw/master/resources/css/Ext.ux.Message.css"/>
+    
+
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/md5-min.js"></script>    
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/directory.css" />    
+    
+    
+    <script type="text/javascript" >
+
+    var msg = null;
+  
+     
+    Ext.onReady(function() {
+      
+        Ext.QuickTips.init();
+        
+        msg = Ext.ux.Message;
+        msg.init();
+        
+        
+             
+        Ext.Direct.on({
+            exception:function(e) {
+                console.error('DIRECT EXCEPTION', e.data, e, arguments);
+            }
+            ,event:function(e) {
+                console.info('DIRECT EVENT', e.data, e, arguments);
+            }
+            ,message:function(e) {
+                console.info('DIRECT MESSAGE', e.data, e, arguments);
+            }
+        });
+        
+        // initiate JS from PRE tags
+        var codes = Ext.DomQuery.jsSelect('pre');
+        Ext.each(codes, function(item) {
+            var code = item.innerHTML;
+            eval.apply(window, [code] );
+        });
+        
+        // highlight
+        SyntaxHighlighter.highlight();
+         
+    });
+    </script>
+    
+    
+
+    <style>
+        body {
+            font-family:Trebuchet Ms;
+        }
+        H1 {
+            font-size:45px;
+            margin:10px;
+        }
+        .syntaxhighlighter {
+            font-size:12px !important;
+            overflow-y:hidden !important;
+        }
+        label.title {
+            margin-left:10px;
+            font-weight:bold;
+            display:block;
+            font-size:15px;
+        }
+        .example {
+            margin:10px;
+            padding:10px;
+            border:1px solid #EEEEEE;
+            
+        }
+        div.infos {
+            margin-top:10px;
+            font-size:14px;
+            margin-left:20px;
+            color:#444444;
+        }
+        p.intro {
+            text-decoration:italic;
+            margin:20px;
+        }
+        ul {
+            margin-left:20px;
+        }
+        ul li {
+            
+        }
+    </style>
+</head>
+<body>
+    <a href="http://github.com/revolunet/extdirect.django"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    
+    <h1>
+        when <a href="http://djangoproject.com"><img border="0" src="{{ STATIC_URL }}/images/django.png" style="vertical-align:middle;"/></a>  meets <a href="http://www.sencha.com/products/extjs"><img border="0" src="{{ STATIC_URL }}/images/sencha.png" style="vertical-align:middle"/></a>
+        
+        
+        
+    </h1> 
+    
+    <p class='intro'>
+        Here are some example usages of <a href="http://revolunet.com">revolunet</a> extdirect.django project.
+        <br />
+        The lib provide ExtJs components and data generation from your django applications through ExtDirect & CRUD.
+        <br />
+        <ul>
+            <b>Links :</b>
+            <li><a href="http://github.com/revolunet/extdirect.django">project page @github</a></li>
+            <li><a href="http://extjs.revolunet.com">revolunet ExtJs lab</a></li>
+          <!--
+          <li><a href="http://www.djangoproject.com">Django project</a></li>
+          <li><a href="http://www.sencha.com/products/extjs">ExtJs Sencha Javascript library</a> ( see <a href='http://www.sencha.com/products/extjs/license/'>dual license</a> )</li>
+          -->
+        </ul>
+    </p>
+    <br />
+
+    <div class="example" id="c0">
+        <label class="title">List some remote data from django models</label>
+        <pre class="brush: js; ruler: true;toolbar: false">
+            // this callback will be called on server response
+            function reveivedData( data ) {
+                var now = new Date();
+                msg.info("end fetching data" );
+                Ext.get('res0').insertHtml('beforeEnd', '<b>Latency : ' + (now-timer) + 'ms</b><br/>');
+                Ext.each(data.records, function(item) {
+                    Ext.get('res0').insertHtml('beforeEnd', 'item ' + item.id + ' : ' + item.name + '<br/>');
+                }, this);
+            }
+            
+            // for latency measure
+            var timer = new Date();
+            
+            // create a testing button
+            var b = new Ext.Button({
+                text:'load random 1000 records'
+                ,renderTo:'button0'
+                ,handler:function() {
+                    msg.info("start fetching data" );
+                    timer = new Date();
+                    Ext.get('res0').update('');
+                    // randomize a little bit
+                    var keys = ['ne','co','te','ma','me','wi','tr','ne','po','te','la','th','on'];
+                    var randomnumber = Math.floor(Math.random() * keys.length);
+                    var randomkey = keys[randomnumber];
+                    // params sent to the django store
+                    var params = {
+                         start:0
+                        ,limit:1000
+                        ,sort:'id'
+                        ,dir:'ASC'
+                        ,name__icontains:randomkey
+                    };
+                    // intial ExtDirect call
+                    django.directory_Keyword.read(params, reveivedData);
+                }
+            });
+        </pre>
+        <div id='button0'></div>
+        <br/>
+        <div id='res0' style='height:100px;overflow-y:auto;width:300px;font-size:10px;background:#EFEFEF'></div>
+
+    </div>
+   
+    <div class="example" id="c01">
+        <label class="title">django models data view</label>
+        <pre class="brush: js; ruler: true;toolbar: false">
+            
+            // create a testing button
+            var dataview = new Ext.django.DataView({
+                model:'directory_Contact'
+                ,renderTo:'c01'
+                // define a template 
+                ,tpl:'<br><tpl for="."><li>{first_name} - {email}</li></tpl>'
+                ,listeners:{
+                    'load':function(){
+                        msg.info("dataview loaded" );
+                    }
+                }
+            });
+                
+            //create a button to load the data
+            var b = new Ext.Button({
+                text:'reload'
+                ,scope:this
+                ,renderTo:'button1'
+                ,handler:function() {
+                    msg.info("reload dataview")
+                    console.log('reload', this, arguments );
+                    this.dataview.getStore().load();
+                }
+            });
+            
+        </pre>
+        <div id='button1'></div>
+     
+    </div>
+   
+    
+    
+    <div class="example" id="c1">
+        <label class="title">Singleselect AwesomeCombo from django models</label>
+        <pre class="brush: js; ruler: true;toolbar: false">
+            var simpleCombo = new Ext.django.ComboBox({
+                renderTo:'c1', 
+                model:'directory.Contact',                                  // select your django model here
+                emptyText:'choose a contact :',
+                listeners:{                                                 // listen some events
+                    beforeselect:function(combo, selection) {
+                        msg.warning("selection changed to " + selection.data[combo.displayField] );
+                    }
+                    ,scope:this
+                }
+            });
+        </pre>
+        
+    </div>
+    
+    <div  class="example" id="c2">
+        <label class="title">Multiselect AwesomeCombo from django models with default value</label>
+        <pre class="brush: js;ruler: true;toolbar: false">
+            var multiCombo = new Ext.django.ComboBox({
+                renderTo:'c2', 
+                model:'directory.Color',          // select your django model here        
+                enableMultiSelect:true,         
+                value:[                           // set some defaults values
+                     {id:4}
+                    ,{id:3}
+                    ],
+                listeners:{                       // listen some events
+                    beforeselect:function(combo, selection) {
+                        msg.warning("selection changed to " + selection.data[combo.displayField] );
+                    }
+                    ,scope:this
+                }
+            });
+        </pre>
+    </div>
+     
+    <div  class="example" id="c3">
+        <label class="title">Multiselect AwesomeCombo with paging, autocomplete and default values</label>
+        <pre class="brush: js;ruler: true;toolbar: false">
+            var multiCombo = new Ext.django.ComboBox({
+                renderTo:'c3', 
+                pageSize:10,
+                mode:'remote',
+                model:'directory.Keyword',    // select your django model here  
+                enableMultiSelect:true,
+                typeAhead:true,               // enable auto complete
+                forceSelection:true,
+                editable:true,
+                value:[                       // set some defaults values
+                     {id:7570}
+                    ,{id:1432}
+                    ,{id:1226}
+                ],
+                listeners:{                  // listen some events
+                    beforeselect:function(combo, selection) {
+                        msg.warning("selection changed to " + selection.data[combo.displayField] );
+                    }
+                    ,scope:this
+                }
+            });
+        </pre>
+    </div>
+     
+    <div class="example" id="grid1">
+        <label class="title">Editable MetaGrid</label>
+        <pre class="brush: js;ruler: true;toolbar: false">
+            var SimpleGrid = new Ext.django.Grid({
+                renderTo:'grid1',   
+                editable:true,                       // set the grid editable
+                model:'directory.SampleModel',       // select your django model here  
+                width:1000, 
+                height:200,
+                listeners:{                          // listen some events
+                    viewready:function(combo, selection) {
+                        msg.info("grid ready");
+                    },
+                    save:function() {
+                        msg.info("data saved");
+                    }
+                    ,scope:this
+                }
+            });        
+        </pre>
+    </div>
+    
+    <div  class="example" id="grid2">
+        <label class="title">Editable MetaGrid with custom columns</label>
+        <pre class="brush: js;ruler: true;toolbar: false">
+            var customGrid =  new Ext.django.Grid({
+                renderTo:'grid2', 
+                editable:true,                                            // set the grid editable
+                model:'directory.Contact',                                // select your django model here  
+                width:1000, 
+                height:200, 
+                fields:['first_name', 'last_name', 'email'],              // customize the grid column list
+                listeners:{                                               // listen some events
+                    viewready:function(combo, selection) {
+                        msg.info("grid ready");
+                    },
+                    save:function() {
+                        msg.info("data saved");
+                    }
+                    ,scope:this
+                }
+            });    
+        </pre>
+    </div>
+    <div  class="example" id="grid3">
+        <label class="title">MetaGrid with paging</label>
+        <div class="infos">The grid paging is auto activated when the recordcount reach the default 50 items limit</div>
+        <pre class="brush: js;ruler: true;toolbar: false">
+            var PagingGrid = new Ext.django.Grid({
+                renderTo:'grid3', 
+                model:'directory.Keyword',                               // select your django model here  
+                width:400,
+                height:200,
+                listeners:{                                              // listen some events
+                    viewready:function(combo, selection) {
+                        msg.info("grid ready");
+                    },
+                    save:function() {
+                        msg.info("data saved");
+                    }
+                    ,scope:this
+                }
+            }); 
+        </pre>
+    </div>
+    
+    <div  class="example" id="grid4">
+        <label class="title">Django users MetaGrid with custom RowActions and renderers</label>
+        <pre class="brush: js;ruler: true;toolbar: false">
+            var PagingGrid2 = new Ext.django.Grid({
+                renderTo:'grid4', 
+                model:'auth.User',                                                                                  // select your django model here                                                     
+                editable:true,                                                                                      // set editable
+                width:800,
+                height:200,
+                fields:['username', 'first_name', 'last_name', 'email', 'is_active', 'is_superuser', 'is_staff'],   // customize the column list
+                defaultRecordData:{                                                                                 // default data for new records
+                    password:'this is test'
+                },
+                columnsConfig:[                                                                                     // customize come columns
+                    {
+                         name:'email'
+                        ,renderer:function(val, meta) {
+                            meta.attr = " style='color:red;font-weight:bold' ";
+                            return val;
+                        }
+                    },
+                    {
+                        xtype:'actioncolumn'                                                                        // adds an actioncolumn with two buttons
+                        ,width:30
+                        ,header: 'actions'
+                        ,align:'center'
+                        ,items:[
+                            {
+                             iconCls:'icon-map'
+                            ,tooltip:'show map'
+                            ,scope:this
+                            ,handler:function(grid, rowIndex, colIndex) {
+                                var rec = grid.getStore().getAt(rowIndex);
+                                var msg = "show map for '" + rec.get("__unicode__") + "'";
+                                Ext.Msg.alert('Status', msg);
+                                }
+                            },
+                            {
+                             iconCls:'icon-mail'
+                            ,tooltip:'send a mail'
+                            ,scope:this
+                            ,handler:function(grid, rowIndex, colIndex) {
+                                var rec = grid.getStore().getAt(rowIndex);
+                                var msg = "send a mail to '" + rec.get("__unicode__") + "'";
+                                Ext.Msg.alert('Status', msg);
+                                }
+                            }
+                         ]
+                    }        
+                ],
+                listeners:{                                                                                         // listen to some events
+                    viewready:function(combo, selection) {
+                        msg.info("grid ready");
+                    },
+                    save:function() {
+                        msg.info("data saved");
+                    }
+                    ,scope:this
+                }
+                
+            }); 
+    </div>
+ 
+    <div  class="example" id="form1">
+        <label class="title">Simple server side django form with validation</label>
+        <pre class="brush: js;ruler: true;toolbar: false">
+            var form1 = new Ext.django.Form({
+                title:'Sample Form 1',
+                border:true,
+                renderTo:'form1', 
+                formCls:'SampleForm',                                                                                // set your server Form Class here
+                width:500,
+                scope:this,
+                listeners:{                                                                                          // listen to some events
+                    formLoaded:function() {
+                        msg.info("form loaded");
+                    }
+                    ,submitSuccess:function() {
+                         msg.info("form submit success");
+                    }
+                    ,submitFailure:function() {
+                         msg.error("form submit ERROR");
+                    }
+                }
+            }); 
+    </div>
+    
+    <div  class="example" id="form2">
+        <label class="title">Form with fields customisation</label>
+        <pre class="brush: js;ruler: true;toolbar: false">
+            var form1 = new Ext.django.Form({
+                title:'Sample Form 2',
+                border:true,
+                renderTo:'form2', 
+                formCls:'SampleForm',                                                                                // set your server Form Class here
+                width:300,
+                formConfig:{                                                                                         // customize the form and some fields
+                    labelAlign:'top',
+                    fields:[
+                         {name:"name", emptyText:"you'd better set it"} 
+                        ,{name:"email", style:"font-size:24px;color:red", height:30, emptyText:"FILL YOUR EMAIL"}
+                        ,{name:"interests", value:"TV,INTERNET"}
+                        ,{name:"message", xtype:"textarea", width:250}
+                        ,{name:"alert", labelAlign:"left"}
+                    ]
+                },
+                scope:this,
+                listeners:{                                                                                          // listen to some events
+                    formLoaded:function() {
+                        msg.info("form loaded");
+                    }
+                    ,submitSuccess:function() {
+                         msg.info("form submit success");
+                    }
+                    ,submitFailure:function() {
+                         msg.error("form submit ERROR");
+                    }
+                }
+            }); 
+    </div>
+    
+</body>
+</html>

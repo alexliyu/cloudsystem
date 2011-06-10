@@ -1,0 +1,141 @@
+.ui-ribbonbar 
+{
+    background: transparent;
+}
+
+.ui-ribbonbar .x-panel-body-default
+{
+    border-color: #99BBE8 !important;
+    background-image: none !important;
+    background-color: #DFE9F5 !important;
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,#DFE9F5),color-stop(60%,#ccdbec)) !important;
+    background-image: -moz-linear-gradient(top,#DFE9F5 5%,#ccdbec 60%) !important;
+    background-image: linear-gradient(top,#DFE9F5 5%,#ccdbec 60%) !important;
+    
+    border-bottom: 1px solid #99BBE8 !important;
+    
+    border-radius: 2px 2px 0px 0px;
+    -moz-border-radius: 2px 2px 0px 0px;
+    -webkit-border-radius: 2px 2px 0px 0px;
+    -o-border-radius: 2px 2px 0px 0px;
+    -ms-border-radius: 2px 2px 0px 0px;
+    -khtml-border-radius: 2px 2px 0px 0px;
+}
+
+.ui-ribbonbar .x-tab-bar-strip 
+{
+    border-top: 0px;
+    padding-right: 10px;
+}
+
+.ui-ribbonbar .x-btn-as-arrow em
+{
+    display: block;
+    background-color: transparent;
+    padding-bottom: 15px;
+    font-size: 1px!important;
+}
+
+.x-chrome .ui-ribbonbar .x-btn-as-arrow em
+{
+    padding-bottom: 13px;
+}
+
+.ui-ribbonbar .x-tab-bar-strip-default-plain-horizontal
+{
+    height: 0px !important;
+}
+
+.ui-ribbonbar .x-tab-default-top
+{
+    background-image: none;
+    background-color: transparent;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: white 0 1px 0 0 inset,white -1px 0 0 0 inset,white 1px 0 0 0 inset;
+    border: 1px solid transparent;
+}
+
+.ui-ribbonbar .x-tab-default-top
+{
+    margin-left: 2px !important;
+}
+
+.ui-ribbonbar .x-tab-default-closable
+{
+    padding-right: 10px;
+}
+
+.ui-ribbonbar .x-tab-close-btn
+{
+    font-size: 0px !important;
+    text-indent: -999px;
+}
+
+.ui-ribbonbar .x-tab-bar-body
+{
+    top: 3px !important;
+    border-bottom: 0px !important;
+}
+
+.ui-ribbonbar .x-tab-top-active
+{
+    border: 1px solid #8DB2E3;
+    background-image: none;
+    background-color: #DFE9F5;
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(5%,white),color-stop(80%,#DFE9F5));
+    background-image: -moz-linear-gradient(top,white,#F5F9FE 5%,#DFE9F5 80%);
+    background-image: linear-gradient(top,white,#F5F9FE 5%,#DEECFD 80%);
+}
+
+.ui-ribbonbar .x-tab-default-top-active
+{
+    border-bottom-color: #DFE9F5 !important;
+}
+
+.ui-ribbonbar .x-tab em
+{
+    padding: 0 10px;
+}
+
+.ui-ribbonbar .x-tab em button
+{
+    font-weight: normal !important;
+}
+
+.ui-ribbonbar .x-tab-bar-body .x-box-inner
+{
+    height: 24px !important;
+}
+.e2system-btn-document-save
+{
+background: url(/static/icons/actions/32/document-save.png) top no-repeat !important;
+}
+.e2system-btn-view-list-compact
+{
+background: url(/static/icons/actions/32/view-list-compact.png) top no-repeat !important;
+}
+.e2system-desktop-webbrowser
+{
+background: url(/static/icons/apps/48/chromium-browser.png) top no-repeat !important;
+}
+.e2system-desktop-webbrowser-s
+{
+background: url(/static/icons/apps/22/chromium-browser.png) left top no-repeat !important;
+}
+.e2system-desktop-useradmin
+{
+background: url(/static/icons/apps/48/config-users.png) top no-repeat !important;
+}
+.e2system-desktop-useradmin-s
+{
+background: url(/static/icons/apps/16/config-users.png) left  top no-repeat !important;
+}
+.e2system-desktop-systemadmin
+{
+background: url(/static/icons/apps/48/gconf-editor.png) top no-repeat !important;
+}
+.e2system-desktop-systemadmin-s
+{
+background: url(/static/icons/apps/16/gconf-editor.png) left  top no-repeat !important;
+}

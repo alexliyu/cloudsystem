@@ -1,0 +1,38 @@
+
+Ext.define('Ext.django.DataView', {
+            extend : 'Ext.view.View',
+            model : 'app.Model',
+            tpl : null,
+            initComponent : function() {
+                model = this.model.replace('.', '_')
+                store = Ext.create('Ext.django.Store',{
+                    proxy : {
+                        type : 'direct',
+                        api : django[model],
+                        extraParams : {
+                            meta : true,
+                            fields : this.fields || [],
+                            colModel : this.colModel
+                        }
+
+                    },
+                    baseParams : {
+                        fields : this.fields || []
+
+                    }});
+                
+                this.relayEvents(store, ['load']);
+                var config = {
+                    store : store,
+                    tpl : this.tpl,
+                    autoHeight : true,
+                    multiSelect : true,
+                    
+                    emptyText : 'Nothing to display'
+                }
+                Ext.apply(this, config);
+                Ext.django.DataView.superclass.initComponent.apply(this,
+                        arguments);
+
+            }
+        });

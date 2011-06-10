@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+<title>E2集中运营管理平台</title>
+<style type="text/css">
+#loading-mask {
+	background-color: white;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 20000;
+}
+
+#loading {
+	height: auto;
+	position: absolute;
+	left: 30%;
+	top: 40%;
+	padding: 2px;
+	z-index: 20001;
+}
+
+#loading a {
+	color: #225588;
+}
+
+#loading .loading-indicator {
+	background: white;
+	color: #444;
+	font: bold 13px Helvetica, Arial, sans-serif;
+	height: auto;
+	margin: 0;
+	padding: 10px;
+}
+
+#loading-msg {
+	font-size: 10px;
+	font-weight: normal;
+}
+
+.app-header .x-panel-body {
+	background-color: #ddd;
+	padding-left: 5px;
+}
+
+.app-header h1 {
+	font-family: verdana, arial, sans-serif;
+	font-size: 20px;
+	color: #15428B;
+}
+
+.hospital-target {
+	border: 1px solid red;
+	margin: 5px;
+	padding: 5px;
+	font-size: small;
+	cursor: default;
+}
+
+.hospital-target.hospital-target-hover {
+	background-color: #C0C0C0;
+}
+
+.patient-source {
+	cursor: pointer;
+}
+
+.patient-view table {
+	border-collapse: separate;
+	border-spacing: 2px;
+}
+
+.patient-view td {
+	font-family: verdana, arial, sans-serif;
+	font-size: 12px;
+}
+
+td.patient-label {
+	background-color: #ddd;
+	border: 1px solid #bbb;
+	font-weight: bold;
+	text-align: right;
+	width: 100px;
+	padding: 0px 3px 0px 0px;
+}
+
+.patient-over {
+	background-color: #EFEFEF;
+	cursor: pointer;
+}
+
+.patient-selected {
+	background-color: #DFE8F6;
+	cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+	<div id="loading-mask" style=""></div>
+	<div id="loading">
+		<div class="loading-indicator">
+			<img src="/static/images/logo.png" width="233" height="67"
+				style="margin-right: 8px; float: left; vertical-align: top;" />E2集中运营管理平台 - <a href="http://www.eiimedia.com">V0.01</a> <br />
+			<span id="loading-msg">正在加载样式和图片文件...</span>
+		</div>
+	</div>
+	<link rel="stylesheet" type="text/css" href="/static/resources/css/ext-all.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/desktop.css" />
+	<link rel="stylesheet" type="text/css"
+		href="/static/shared/example.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/chooser.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/ui-ribbon.css" />
+
+	<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '正在加载核心 API...';</script>
+	<script type="text/javascript" src="/static/bootstrap.js"></script>
+	<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '正在加载语言包...';</script>
+	<script type="text/javascript" src="/static/locale/ext-lang-zh_CN.js"></script>
+	<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '正在加载数据接口...';</script>
+	<script src="/remoting/provider.js"></script>
+	<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '正在加载 UI 组件...';</script>
+
+
+
+
+	<script type="text/javascript">
+        Ext.Loader.setPath({
+            'Ext.ux.desktop': '/static/js',
+            'Ext.ux':'/static/ux',
+            'Ext.django':'/static/js/django',
+            'E2system.App':'/js/App.js',
+            'E2system.kernel':'/static/e2system',
+            E2system:'/js'
+            
+            
+        });
+        Ext.Loader.setConfig({enabled:true});
+        Ext.require('E2system.App',function(){
+        document.getElementById('loading-msg').innerHTML = '已加载完成 UI 组件...';
+        
+        });
+        
+        var E2systemApp;
+        Ext.onReady(function () {
+            E2systemApp = new E2system.App();
+            Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider'));
+            document.getElementById('loading-msg').innerHTML = '正在完成初始化设置...';
+            var hideMask = function () {
+            	Ext.get('loading').remove();
+	            Ext.fly('loading-mask').animate({
+	                opacity:0,
+	                remove:true
+	               
+	            });
+        	};
+
+        	Ext.defer(hideMask, 250);
+        	
+        });
+    </script>
+
+	<script type="text/javascript" src="/static/js/Ext.django.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+.icon-glass {
+    background: transparent url(../images/glass.png) no-repeat;
+    width:16px;
+    height:16px;
+}
+.icon-mail {
+    background: transparent url(../images/mail.png) no-repeat;
+    width:16px;
+    height:16px;
+}
+.icon-map {
+    background: transparent url(../images/map.png) no-repeat;
+    width:16px;
+    height:16px;
+}

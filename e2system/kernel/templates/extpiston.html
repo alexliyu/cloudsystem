@@ -1,0 +1,204 @@
+<html>
+<head>
+    <title>Basic Example</title>
+
+    <!-- Include Ext scripts from CDN -->
+    
+    <script type="text/javascript" src="http://extjs.cachefly.net/ext-3.3.1/adapter/ext/ext-base-debug.js"></script> 
+    <script type="text/javascript" src="http://extjs.cachefly.net/ext-3.3.1/ext-all-debug.js"></script> 
+ 
+    <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.3.1/resources/css/ext-all.css" /> 
+    
+  
+    
+
+    <link rel="stylesheet" type="text/css" href="http://dev.sencha.com/deploy/dev/examples/ux/css/RowEditor.css" /> 
+    
+    
+    <!--- awesome combo -->
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/extpiston/js/Ext.ux.AwesomeCombo/resources/css/Ext.ux.AwesomeCombo.css" /> 
+    <!--
+    <script type="text/javascript" src="{{ MEDIA_URL }}/extpiston/js/Ext.ux.AwesomeCombo/static/js/Ext.ux.PagingMemoryProxy.js"></script> 
+    -->
+    
+    
+    <!--- extpiston -->
+    <script type="text/javascript" src="{{ MEDIA_URL }}/extpiston/js/Ext.ux.AwesomeCombo/src/Ext.ux.AwesomeCombo.js"></script> 
+    <script type="text/javascript" src="{{ MEDIA_URL }}/extpiston/js/CheckColumn.js"></script> 
+    <script type="text/javascript"  src = "{{ MEDIA_URL }}/extpiston/js/Ext.ux.grid.RowEditor.js"></script>
+    <script type="text/javascript"  src = "{{ MEDIA_URL }}/extpiston/js/Ext.ux.RESTEditableGrid.js"></script>
+    
+    <script type="text/javascript" src="{% url extpistonJS %}"></script> 
+    
+    
+    
+    <script type="text/javascript" >
+    
+
+ 
+           
+    Ext.onReady(function() {
+            
+        /* REST Json Store */
+        Ext.ux.RESTstore = Ext.extend(Ext.data.JsonStore, {
+            url:'/path/to/rest'
+            ,restful:true
+            ,baseParams:{
+              
+             }
+            ,fields:[{name:'id'},{name:'__unicode__'}]
+            ,initComponent:function() {
+                var proxy = new Ext.data.HttpProxy({
+                    url: this.url
+                });
+                var reader = new Ext.data.JsonReader({
+                     totalProperty: 'total',
+                     successProperty: 'success',
+                     idProperty: 'id',
+                     root: 'data',
+                     messageProperty: 'message'  // <-- New "messageProperty" meta-data
+                    ,fields:this.fields
+                });
+                var config = {
+                     proxy:proxy
+                    ,reader:reader
+                    
+                }
+                Ext.apply(this, config);
+                Ext.ux.RESTstore.superclass.initComponent.apply( this, arguments );
+            }
+        });
+        
+        /* Awesome ComboBox with REST store support */
+        Ext.ux.RESTcombo = Ext.extend(Ext.ux.AwesomeCombo, {
+             url:'/path/to/rest'
+            ,initComponent:function() {
+                var config = {
+                     valueField:'id'
+                    ,displayField:'__unicode__'
+                    ,triggerAction:'all'
+                    ,format:'object'
+                    ,typeAhead:false
+                    ,mode:'local'
+                    ,editable:false              
+                }
+                this.store = new Ext.ux.RESTstore({
+                     url: this.url
+                     ,autoLoad:true
+                });
+                Ext.apply(this, config);
+                Ext.ux.RESTcombo.superclass.initComponent.apply( this, arguments );
+            }
+        });
+        Ext.reg('RESTcombo', Ext.ux.RESTcombo);
+ 
+        
+        var WIDTH = '95%';
+        
+        var grid1 = new Ext.ux.RestGrid({
+            url:'/extpiston/read/directory.contact'
+            ,id:'cgrid1'
+            ,renderTo:'grid'
+            ,width:WIDTH
+            ,height:300
+            
+        });
+        
+
+        var grid2 = new Ext.ux.RestEditableGrid({
+            url:'/extpiston/edit/directory.contact'
+            ,id:'cgrid2'
+            ,renderTo:'grid2'
+            ,width:WIDTH
+            ,height:300
+        });
+        
+        
+
+        var grid2 = new Ext.ux.RestEditableGrid({
+            url:'/extpiston/edit/directory.SampleModel'
+            ,id:'cgrid3'
+            ,renderTo:'grid3'
+            ,width:WIDTH
+            ,height:300
+        });
+       
+         // patch fields of a form config
+         function patchFormFields(formConf, fieldsConf) {
+              Ext.iterate(formConf.items, function(item, idx, all) {
+                    // ovveride some fields if in fieldsConf
+                    if (fieldsConf.hasOwnProperty( item.name ) ) {
+                        update = fieldsConf[item.name]
+                        console.log(update)
+                        Ext.apply( item, update );
+                    }
+                });
+            return formConf
+         }
+        
+         Ext.Direct.addProvider({
+             "url": "/extpiston/direct"
+            ,"type": "remoting"
+            ,"namespace": "django"
+            ,"actions": {
+                  'User': [
+                        {'len': 1, 'name': 'list'}
+                        ]
+                  ,'Form': [
+                        {'len': 1, 'name': 'get'}
+                        ]
+                  ,'ModelForm': [
+                        {'len': 1, 'name': 'get'}
+                        ,{'len': 1, 'name': 'load'}
+                        ,{'len': 1, 'name': 'submit'}
+                        ]
+                }
+            });
+            
+            function callback(event, provider) {
+                console.log('DIRECT callback', arguments);
+                event['id'] = 'form1';
+                event['labelWidth']=150;
+                
+                fieldsConf = {
+                    'url':{
+                        'style':'font-size:18px;color:red;text-align:center'
+                        ,'value':'this is a client override'
+                    }
+                }
+                event = patchFormFields(event, fieldsConf) 
+                 
+                var e = new Ext.ComponentMgr.create(event);
+                e.render('c1');
+            }
+            function callback2(event, provider) {
+                console.log('DIRECT callback2', arguments);
+                var e = new Ext.ComponentMgr.create(event);
+                e.render('c2');
+            }
+            //django.User.list({test:1}, callback)
+            //django.Form.get({form:'SampleForm', test:'ablablaa'}, callback)
+            django.ModelForm.get({app_label:'directory', model_name:'SampleModel'}, callback)
+            django.ModelForm.get({app_label:'directory', model_name:'SampleModel', pk:1}, callback2)
+           // Remote.TestUtils.capitalize({word:'foo'}, console.log)
+           
+            
+    });
+    </script>
+
+</head>
+<body>
+    <h1>GRID test</h1>
+
+    <div id="c1"> </div>
+    <div id="c2"> </div>
+    <div id="combo"> </div>
+    <div id="combo2"> </div>
+    <div id="grid"> </div>
+    <div id="grid2"> </div>
+    <div id="grid3"> </div>
+    <table>
+    {{ form.as_table }}
+    </table>
+</body>
+</html>

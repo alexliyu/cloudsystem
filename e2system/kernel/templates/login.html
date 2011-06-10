@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<style type="text/css">
+body { background:#fff none; color:#000; font-family:verdana,tahoma,arial,verdana,sans-serif; font-size:11px; margin:0; }
+p { margin:12px 0; }
+a { color:#ffcc33; }
+img { border:0 none; }
+input, textarea { font-family:verdana,tahoma,arial,verdana,sans-serif; font-size:12px; padding:3px; }
+.key { text-decoration:underline; }
+.qo-abs-position { position:absolute; }
+#qo-panel { background:transparent url('/static/images/default/login/bg-panel.jpg') no-repeat; height:521px; left:50%; margin-left:-404px; margin-top:-260px; position:absolute; top:50%; width:808px; }
+.qo-logo { background:transparent url('/static/images/default/login/logo-qwikioffice.png') no-repeat; height:67px; left:0px; top:20px; width:233px; }
+.qo-benefits { left:52px; top:140px; width:300px; }
+.qo-screenshot { background:transparent url('/static/images/default/login/screenshot.png') no-repeat; height:190px; left:37px; top:245px; width:329px; }
+.qo-library { left:54px; top:477px; }
+.qo-library a { color:#0000ff; }
+.qo-supported { color:#ffffff; left:618px; top:45px; }
+.qo-back-link { left:627px; top:478px; }
+.qo-signup-link { left:495px; top:478px; }
+.qo-signup-link a, .qo-forgot-link a, .qo-back-link a { color:#000; }
+.qo-forgot-link { left:625px; top:478px; }
+#field1-label { left:410px; top:300px; }
+#login { left:540px; top:298px; width:200px; }
+#field2-label { left:410px; top:335px; }
+#password { left:540px; top:333px; width:200px; }
+#field3-label { left:430px; top:300px; }
+#field3 { left:550px; top:298px; width:200px; }
+.qo-submit { background:transparent url(${request.static_url('/static/images/default/login/login.gif') no-repeat 0 0; height:22px; left:705px; top:373px; width:43px; }
+.qo-submit-over { background:transparent url(${request.static_url('/static/images/default/login/login.gif') no-repeat 0 -38px; height:22px; left:705px; top:373px; width:43px; }</style>
+<script type="text/javascript">
+var ext_wallpaper="/static/wallpapers/Blue-Sencha.jpg"
+</script>
+<script type="text/javascript" src="/static/builds/ext-core.js"></script>
+       
+        <title>Shootout</title>
+    </head>
+    <body class="  ext-webkit ext-chrome ext-linux" style="position: static; ">
+         <form id="login_form" action="/login/" method="post">
+        <div id="qo-panel">
+	<img alt="" src="/static/images/default/login/s.gif" class="qo-logo qo-abs-position">
+	
+	<div class="qo-benefits qo-abs-position">
+		<p>欢迎您使用娱讯联播网E2集中运营管理平台！</p>
+		<p>系统帐号请向研发部索取</p>
+	</div>
+	
+	<img alt="" src="/static/images/default/login/s.gif" class="qo-screenshot qo-abs-position">
+	
+	<span class="qo-supported qo-abs-position">
+		<b>支持的浏览器</b><br>
+		<a href="http://www.mozilla.org/download.html" target="_blank">Firefox 2+</a><br>
+		<a href="http://www.microsoft.com/windows/downloads/ie/getitnow.mspx" target="_blank">Internet Explorer 7+</a><br>
+		<a href="http://www.opera.com/download/" target="_blank">Opera 9+</a><br>
+		<a href="http://www.apple.com/safari/download/" target="_blank">Safari 2+</a>
+	</span>
+	
+	<a href="http://www.extjs.com/" target="_blank"><img alt="" src="/static/images/default/login/s.gif" class="qo-extjs-logo qo-abs-position"></a>
+	
+	<span class="qo-library qo-abs-position">
+	   当前版本：V0.01
+	   版权所有 <a href="http://www.eiimedia.com/" target="_blank">娱讯（厦门）文化传播有限公司</a>.
+	</span>
+	
+	
+	<span class="qo-forgot-link qo-abs-position">
+		<a href="http://qwikioffice.com/desktop-demo/forgot-password.html">忘记密码了？</a>
+	</span>
+	<label id="field1-label" class="qo-abs-position" accesskey="e" for="field1">用户帐号</label>
+	<input class="qo-abs-position" type="text" name="username" id="login">
+	
+	<label id="field2-label" class="qo-abs-position" accesskey="p" for="field2">登录密码</label>
+	<input class="qo-abs-position" type="password" name="password" id="password">
+	
+  
+	
+	<input id="submit" class="qo-submit qo-abs-position " type="image" src="/static/images/default/login/s.gif">
+
+
+</div>
+</form>
+    </body>
+</html>
