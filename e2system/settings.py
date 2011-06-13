@@ -143,10 +143,6 @@ INSTALLED_APPS = (
     #'overseer',
     #'permissions',
     'e2system.kernel',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
 )
 SERIALIZATION_MODULES = {
         "extdirect" : "e2system.kernel.app.extdirect.django.extserializer"        
