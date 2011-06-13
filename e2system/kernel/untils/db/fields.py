@@ -3,7 +3,7 @@ import datetime
 from django.db import models
 from django.template.defaultfilters import slugify
 
-from e2system.untils import constants
+from e2system.kernel.untils import constants
 
 
 class StatusField(models.IntegerField):

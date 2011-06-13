@@ -4,9 +4,9 @@ import threading
 from django.conf import settings
 from django.core.cache import cache
 
-from e2system.untils.cache import key_from_args, cached_filter, CachedNode
-from e2system.untils.test import TestCase
-from e2system.untils.tests.cache_backend import CacheClass
+from e2system.kernel.untils.cache import key_from_args, cached_filter, CachedNode
+from e2system.kernel.untils.test import TestCase
+from e2system.kernel.untils.tests.cache_backend import CacheClass
 
 
 class CacheUtilsTestCase(TestCase):

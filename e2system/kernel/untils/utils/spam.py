@@ -4,7 +4,7 @@ from django.contrib.comments import get_model as get_comment_model
 from django.contrib.comments.signals import comment_was_posted
 from django.utils.encoding import smart_str
 
-from e2system.untils.utils.akismet import AkismetClient
+from e2system.kernel.untils.utils.akismet import AkismetClient
 
 
 AKISMET_KEY = getattr(settings, 'AKISMET_KEY', '')

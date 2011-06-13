@@ -6,9 +6,9 @@ from django.core.cache import cache
 from django.db import models
 from django.http import HttpResponseForbidden
 
-from e2system.untils.decorators import async, memoize, throttle, cached_for_model
-from e2system.untils.test import RequestFactoryTestCase, TestCase
-from e2system.untils.tests.models import Simple
+from e2system.kernel.untils.decorators import async, memoize, throttle, cached_for_model
+from e2system.kernel.untils.test import RequestFactoryTestCase, TestCase
+from e2system.kernel.untils.tests.models import Simple
 
 
 class ThrottleDecoratorTestCase(RequestFactoryTestCase):

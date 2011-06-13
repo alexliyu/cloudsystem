@@ -3,9 +3,9 @@ import os
 
 from django.conf import settings
 
-from e2system.untils.queue.exceptions import QueueException
-from e2system.untils.queue.registry import registry
-from e2system.untils.utils.helpers import load_class
+from e2system.kernel.untils.queue.exceptions import QueueException
+from e2system.kernel.untils.queue.registry import registry
+from e2system.kernel.untils.utils.helpers import load_class
 
 
 def get_queue_class():

@@ -6,11 +6,11 @@ import time
 from django.conf import settings
 from django.contrib.auth.models import User
 
-from e2system.untils.queue.bin.consumer import QueueDaemon
-from e2system.untils.queue.decorators import crontab, queue_command, periodic_command
-from e2system.untils.queue.queue import QueueCommand, PeriodicQueueCommand, QueueException, invoker
-from e2system.untils.queue.registry import registry
-from e2system.untils.test import TestCase
+from e2system.kernel.untils.queue.bin.consumer import QueueDaemon
+from e2system.kernel.untils.queue.decorators import crontab, queue_command, periodic_command
+from e2system.kernel.untils.queue.queue import QueueCommand, PeriodicQueueCommand, QueueException, invoker
+from e2system.kernel.untils.queue.registry import registry
+from e2system.kernel.untils.test import TestCase
 
 
 class DummyThreadQueue():

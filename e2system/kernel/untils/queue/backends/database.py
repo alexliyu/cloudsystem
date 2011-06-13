@@ -1,7 +1,7 @@
 from django.db import DatabaseError
 
-from e2system.untils.models import QueueMessage
-from e2system.untils.queue.backends.base import BaseQueue
+from e2system.kernel.untils.models import QueueMessage
+from e2system.kernel.untils.queue.backends.base import BaseQueue
 
 
 class DatabaseQueue(BaseQueue):

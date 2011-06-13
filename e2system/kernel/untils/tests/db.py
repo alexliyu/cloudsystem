@@ -1,8 +1,8 @@
 import datetime
 
-from e2system.untils import constants
-from e2system.untils.test import TestCase
-from e2system.untils.tests.models import (
+from e2system.kernel.untils import constants
+from e2system.kernel.untils.test import TestCase
+from e2system.kernel.untils.tests.models import (
     Simple, Complex, UnderscoresNumerals, StatusModel
 )
 

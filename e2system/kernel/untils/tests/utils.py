@@ -13,9 +13,9 @@ from django.conf import settings
 from django.core.files import storage
 from django.core.files.base import ContentFile
 
-from e2system.untils.test import TestCase
-from e2system.untils.utils.images import resize
-from e2system.untils.utils.strings import split_words_at
+from e2system.kernel.untils.test import TestCase
+from e2system.kernel.untils.utils.images import resize
+from e2system.kernel.untils.utils.strings import split_words_at
 
 
 class DummyMemoryStorage(storage.Storage):

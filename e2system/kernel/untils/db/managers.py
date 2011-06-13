@@ -1,6 +1,6 @@
 from django.db import models
 
-from e2system.untils.constants import LIVE_STATUS
+from e2system.kernel.untils.constants import LIVE_STATUS
 
 
 class PublishedManager(models.Manager):

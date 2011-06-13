@@ -16,10 +16,10 @@ if __name__ == '__main__':
 from django.db.models.loading import get_apps
 
 # avoid importing these if the environment variable is not set
-from e2system.untils.daemon import Daemon
-from e2system.untils.queue import autodiscover
-from e2system.untils.queue.exceptions import QueueException
-from e2system.untils.queue.queue import invoker, queue_name, registry
+from e2system.kernel.untils.daemon import Daemon
+from e2system.kernel.untils.queue import autodiscover
+from e2system.kernel.untils.queue.exceptions import QueueException
+from e2system.kernel.untils.queue.queue import invoker, queue_name, registry
 
 
 class QueueDaemon(Daemon):

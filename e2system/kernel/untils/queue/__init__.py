@@ -1,4 +1,4 @@
-from e2system.untils.utils.helpers import generic_autodiscover
+from e2system.kernel.untils.utils.helpers import generic_autodiscover
 
 
 def autodiscover():

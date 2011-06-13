@@ -9,6 +9,7 @@ from e2system.kernel.system import *
 
 
 
+
 SCRIPT = """
 
     Ext.ns("Ext.app");
@@ -124,7 +125,8 @@ class ExtJavascriptProvider(ExtProvider):
     def getclassname(self, url):
         url = url[4:-3]
         return url
-
+    
+    
     def api(self, request):
         self.url = self.getclassname(request.path)
         app = self.getAppByName(self.url)

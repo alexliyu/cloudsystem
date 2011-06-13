@@ -1,5 +1,5 @@
-from e2system.untils.middleware import SubdomainMiddleware
-from e2system.untils.test import RequestFactoryTestCase
+from e2system.kernel.untils.middleware import SubdomainMiddleware
+from e2system.kernel.untils.test import RequestFactoryTestCase
 
 
 class SubdomainMiddlewareTestCase(RequestFactoryTestCase):

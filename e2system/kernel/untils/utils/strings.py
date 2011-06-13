@@ -1,4 +1,4 @@
-from e2system.untils.constants import STOP_WORDS_RE
+from e2system.kernel.untils.constants import STOP_WORDS_RE
 
 
 def split_words_at(words, split_at, after=True):

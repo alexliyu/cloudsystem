@@ -1,14 +1,14 @@
 from django import forms
 from django.forms.formsets import formset_factory
 
-from e2system.untils import constants
-from e2system.untils.templatetags.djutils_tags import (
+from e2system.kernel.untils import constants
+from e2system.kernel.untils.templatetags.djutils_tags import (
     formset_empty_row, formset_add_row, formset_forms, formset_header_row,
     dynamic_formset, popular_tags, latest, alpha, call_manager, tumble,
     as_template, 
 )
-from e2system.untils.test import TestCase
-from e2system.untils.tests.models import Note1, Note2, Note3
+from e2system.kernel.untils.test import TestCase
+from e2system.kernel.untils.tests.models import Note1, Note2, Note3
 
 
 class TestForm(forms.Form):

@@ -1,8 +1,8 @@
 from django.db import models
 
-from e2system.untils.decorators import async, memoize, throttle, cached_for_model
-from e2system.untils.db.fields import SmartSlugField, StatusField
-from e2system.untils.db.managers import PublishedManager
+from e2system.kernel.untils.decorators import async, memoize, throttle, cached_for_model
+from e2system.kernel.untils.db.fields import SmartSlugField, StatusField
+from e2system.kernel.untils.db.managers import PublishedManager
 
 
 class Simple(models.Model):

@@ -13,11 +13,11 @@ from django.template.loader import render_to_string
 from django.utils.hashcompat import md5_constructor
 from django.utils.safestring import mark_safe
 
-from e2system.untils.constants import SYNTAX_HIGHLIGHT_RE
-from e2system.untils.decorators import memoize
-from e2system.untils.db.managers import PublishedManager
-from e2system.untils.utils.highlighter import highlight
-from e2system.untils.utils.images import resize as img_resize
+from e2system.kernel.untils.constants import SYNTAX_HIGHLIGHT_RE
+from e2system.kernel.untils.decorators import memoize
+from e2system.kernel.untils.db.managers import PublishedManager
+from e2system.kernel.untils.utils.highlighter import highlight
+from e2system.kernel.untils.utils.images import resize as img_resize
 
 
 register = template.Library()

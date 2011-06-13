@@ -5,7 +5,7 @@ except ImportError:
 
 from django.conf import settings
 
-from e2system.untils.queue.exceptions import QueueException
+from e2system.kernel.untils.queue.exceptions import QueueException
 
 
 class CommandRegistry(object):

@@ -3,7 +3,7 @@ import re
 
 from django.utils.functional import wraps
 
-from e2system.untils.queue.queue import invoker, QueueCommand, PeriodicQueueCommand
+from e2system.kernel.untils.queue.queue import invoker, QueueCommand, PeriodicQueueCommand
 
 
 def create_command(command_class, func, **kwargs):

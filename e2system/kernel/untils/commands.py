@@ -1,5 +1,5 @@
-from e2system.untils.queue.decorators import queue_command
-from e2system.untils.utils.images import resize
+from e2system.kernel.untils.queue.decorators import queue_command
+from e2system.kernel.untils.utils.images import resize
 
 
 @queue_command

@@ -1,7 +1,7 @@
 import re
 import redis
 
-from e2system.untils.queue.backends.base import BaseQueue
+from e2system.kernel.untils.queue.backends.base import BaseQueue
 
 
 class RedisQueue(BaseQueue):

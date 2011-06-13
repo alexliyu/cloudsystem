@@ -1,4 +1,4 @@
-from e2system.untils.utils.http import fetch_url
+from e2system.kernel.untils.utils.http import fetch_url
 
 
 class AkismetClient(object):

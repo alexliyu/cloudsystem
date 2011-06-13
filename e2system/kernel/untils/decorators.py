@@ -9,7 +9,7 @@ from django.core.cache import cache
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.utils.functional import wraps
 
-from e2system.untils.cache import key_from_args
+from e2system.kernel.untils.cache import key_from_args
 
 
 class EmptyObject(object):
