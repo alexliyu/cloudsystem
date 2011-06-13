@@ -1,4 +1,4 @@
-from notification.models import Notice
+from e2system.kernel.app.notification.models import Notice
 
 
 def notification(request):

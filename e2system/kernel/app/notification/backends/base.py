@@ -15,7 +15,7 @@ class BaseBackend(object):
         Determines whether this backend is allowed to send a notification to
         the given user and notice_type.
         """
-        from notification.models import should_send
+        from e2system.kernel.app.notification.models import should_send
         if should_send(user, notice_type, self.medium_id):
             return True
         return False

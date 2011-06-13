@@ -9,8 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
-from notification.models import Notice
-from notification.atomformat import Feed
+from e2system.kernel.app.notification.models import Notice
+from e2system.kernel.app.notification.atomformat import Feed
 
 
 ITEMS_PER_FEED = getattr(settings, "ITEMS_PER_FEED", 20)

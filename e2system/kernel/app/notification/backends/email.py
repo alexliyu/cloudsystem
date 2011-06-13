@@ -9,8 +9,8 @@ from django.core.exceptions import ImproperlyConfigured
 
 from django.contrib.sites.models import Site
 
-from notification import backends
-from notification.message import message_to_text
+from e2system.kernel.app.notification import backends
+from e2system.kernel.app.notification.message import message_to_text
 
 
 class EmailBackend(backends.BaseBackend):

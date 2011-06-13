@@ -22,8 +22,8 @@ from django.contrib.auth.models import AnonymousUser
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
-from notification import backends
-from notification.message import encode_message
+from e2system.kernel.app.notification import backends
+from e2system.kernel.app.notification.message import encode_message
 
 
 QUEUE_ALL = getattr(settings, "NOTIFICATION_QUEUE_ALL", False)

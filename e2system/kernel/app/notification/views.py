@@ -6,9 +6,9 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.syndication.views import feed
 
-from notification.models import *
-from notification.decorators import basic_auth_required, simple_basic_auth_callback
-from notification.feeds import NoticeUserFeed
+from e2system.kernel.app.notification.models import *
+from e2system.kernel.app.notification.decorators import basic_auth_required, simple_basic_auth_callback
+from e2system.kernel.app.notification.feeds import NoticeUserFeed
 
 
 @basic_auth_required(realm="Notices Feed", callback_func=simple_basic_auth_callback)
