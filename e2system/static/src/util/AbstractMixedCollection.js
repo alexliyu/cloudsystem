@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.util.AbstractMixedCollection
  */
@@ -290,11 +304,11 @@ mc.add(otherEl);
             return me.add(myKey, myObj);
         }
         me.length++;
-        me.items.splice(index, 0, myObj);
+        Ext.Array.splice(me.items, index, 0, myObj);
         if (typeof myKey != 'undefined' && myKey !== null) {
             me.map[myKey] = myObj;
         }
-        me.keys.splice(index, 0, myKey);
+        Ext.Array.splice(me.keys, index, 0, myKey);
         me.fireEvent('add', index, myObj, myKey);
         return myObj;
     },
@@ -334,12 +348,12 @@ mc.add(otherEl);
         if (index < me.length && index >= 0) {
             me.length--;
             o = me.items[index];
-            me.items.splice(index, 1);
+            Ext.Array.erase(me.items, index, 1);
             key = me.keys[index];
             if (typeof key != 'undefined') {
                 delete me.map[key];
             }
-            me.keys.splice(index, 1);
+            Ext.Array.erase(me.keys, index, 1);
             me.fireEvent('remove', o, key);
             return o;
         }
@@ -743,3 +757,4 @@ var middleAged = people.filter('age', 24);
         return copy;
     }
 });
+

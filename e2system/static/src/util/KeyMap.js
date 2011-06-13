@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.util.KeyMap
  * Handles mapping keys to actions for an element. One key map can be used for multiple actions.
@@ -39,14 +53,16 @@ var map = new Ext.util.KeyMap("my-element", [
 ]);
 </code></pre>
  * <b>Note: A KeyMap starts enabled</b>
- * @constructor
- * @param {Mixed} el The element to bind to
- * @param {Object} binding The binding (see {@link #addBinding})
- * @param {String} eventName (optional) The event to bind to (defaults to "keydown")
  */
 Ext.define('Ext.util.KeyMap', {
     alternateClassName: 'Ext.KeyMap',
-    
+
+    /**
+     * Creates new KeyMap.
+     * @param {Mixed} el The element to bind to
+     * @param {Object} binding The binding (see {@link #addBinding})
+     * @param {String} eventName (optional) The event to bind to (defaults to "keydown")
+     */
     constructor: function(el, binding, eventName){
         var me = this;
         

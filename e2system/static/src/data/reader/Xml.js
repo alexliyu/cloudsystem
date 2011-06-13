@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @author Ed Spencer
  * @class Ext.data.reader.Xml
@@ -191,19 +205,15 @@ Ext.define('Ext.data.reader.Xml', {
         }
         
         return function(root) {
-            var node = Ext.DomQuery.selectNode(expr, root),
-                val = me.getNodeValue(node);
-                
-            return Ext.isEmpty(val) ? null : val;
+            return me.getNodeValue(Ext.DomQuery.selectNode(expr, root));
         };
     },
     
     getNodeValue: function(node) {
-        var val;
         if (node && node.firstChild) {
-            val = node.firstChild.nodeValue;
+            return node.firstChild.nodeValue;
         }
-        return val || null;
+        return undefined;
     },
 
     //inherit docs

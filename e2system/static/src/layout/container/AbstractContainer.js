@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.layout.container.AbstractContainer
  * @extends Ext.layout.Layout
@@ -13,13 +27,6 @@ Ext.define('Ext.layout.container.AbstractContainer', {
     /* End Definitions */
 
     type: 'container',
-
-    fixedLayout: true,
-
-    // @private
-    managedHeight: true,
-    // @private
-    managedWidth: true,
 
     /**
      * @cfg {Boolean} bindToOwnerCtComponent
@@ -40,37 +47,6 @@ Ext.define('Ext.layout.container.AbstractContainer', {
      * {@link Ext.Component}.{@link Ext.Component#ctCls ctCls} also.</p>
      * </p>
      */
-
-    isManaged: function(dimension) {
-        dimension = Ext.String.capitalize(dimension);
-        var me = this,
-            child = me,
-            managed = me['managed' + dimension],
-            ancestor = me.owner.ownerCt;
-
-        if (ancestor && ancestor.layout) {
-            while (ancestor && ancestor.layout) {
-                if (managed === false || ancestor.layout['managed' + dimension] === false) {
-                    managed = false;
-                    break;
-                }
-                ancestor = ancestor.ownerCt;
-            }
-        }
-        return managed;
-    },
-
-    layout: function() {
-        var me = this,
-            owner = me.owner;
-        if (Ext.isNumber(owner.height) || owner.isViewport) {
-            me.managedHeight = false;
-        }
-        if (Ext.isNumber(owner.width) || owner.isViewport) {
-            me.managedWidth = false;
-        }
-        me.callParent(arguments);
-    },
 
     /**
     * Set the size of an item within the Container.  We should always use setCalculatedSize.
@@ -112,3 +88,4 @@ Ext.define('Ext.layout.container.AbstractContainer', {
          return this.owner.getTargetEl();
      }
 });
+

@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * Component layout for buttons
  * @class Ext.layout.component.Button
@@ -34,6 +48,8 @@ Ext.define('Ext.layout.component.Button', {
             ownerEl = owner.el,
             btnEl = owner.btnEl,
             btnInnerEl = owner.btnInnerEl,
+            btnIconEl = owner.btnIconEl,
+            sizeIconEl = (owner.icon || owner.iconCls) && (owner.iconAlign == "top" || owner.iconAlign == "bottom"),
             minWidth = owner.minWidth,
             maxWidth = owner.maxWidth,
             ownerWidth, btnFrameWidth, metrics;
@@ -54,11 +70,16 @@ Ext.define('Ext.layout.component.Button', {
                 ownerEl.setWidth(metrics.width + btnFrameWidth + me.adjWidth);
                 btnEl.setWidth(metrics.width + btnFrameWidth);
                 btnInnerEl.setWidth(metrics.width + btnFrameWidth);
+
+                if (sizeIconEl) {
+                    btnIconEl.setWidth(metrics.width + btnFrameWidth);
+                }
             } else {
                 // Remove any previous fixed widths
                 ownerEl.setWidth(null);
                 btnEl.setWidth(null);
                 btnInnerEl.setWidth(null);
+                btnIconEl.setWidth(null);
             }
 
             // Handle maxWidth/minWidth config

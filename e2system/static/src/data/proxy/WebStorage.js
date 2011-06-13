@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @author Ed Spencer
  * @class Ext.data.proxy.WebStorage
@@ -6,10 +20,6 @@
  * <p>WebStorageProxy is simply a superclass for the {@link Ext.data.proxy.LocalStorage localStorage} and 
  * {@link Ext.data.proxy.SessionStorage sessionStorage} proxies. It uses the new HTML5 key/value client-side storage 
  * objects to save {@link Ext.data.Model model instances} for offline use.</p>
- * 
- * @constructor
- * Creates the proxy, throws an error if local storage is not supported in the current browser
- * @param {Object} config Optional config object
  */
 Ext.define('Ext.data.proxy.WebStorage', {
     extend: 'Ext.data.proxy.Client',
@@ -21,7 +31,8 @@ Ext.define('Ext.data.proxy.WebStorage', {
     id: undefined,
 
     /**
-     * @ignore
+     * Creates the proxy, throws an error if local storage is not supported in the current browser
+     * @param {Object} config (optional) Config object.
      */
     constructor: function(config) {
         this.callParent(arguments);

@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.view.TableChunker
  * 
@@ -13,7 +27,7 @@ Ext.define('Ext.view.TableChunker', {
         '{[this.openTableWrap()]}',
         '<table class="' + Ext.baseCSSPrefix + 'grid-table ' + Ext.baseCSSPrefix + 'grid-table-resizer" border="0" cellspacing="0" cellpadding="0" {[this.embedFullWidth()]}>',
             '<tbody>',
-            '<tr>',
+            '<tr class="' + Ext.baseCSSPrefix + 'grid-header-row">',
             '<tpl for="columns">',
                 '<th class="' + Ext.baseCSSPrefix + 'grid-col-resizer-{id}" style="width: {width}px; height: 0px;"></th>',
             '</tpl>',
@@ -136,3 +150,4 @@ Ext.define('Ext.view.TableChunker', {
         
     }
 });
+

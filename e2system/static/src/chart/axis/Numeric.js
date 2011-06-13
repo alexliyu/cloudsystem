@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.chart.axis.Numeric
  * @extends Ext.chart.axis.Axis
@@ -75,7 +89,6 @@
  * We use a <em>grid</em> configuration to set odd background rows to a certain style and even rows
  * to be transparent/ignored.
  *
- * @constructor
  */
 Ext.define('Ext.chart.axis.Numeric', {
 
@@ -92,22 +105,20 @@ Ext.define('Ext.chart.axis.Numeric', {
     alias: 'axis.numeric',
 
     constructor: function(config) {
-        var me = this, label, f;
+        var me = this,
+            hasLabel = !!(config.label && config.label.renderer),
+            label;
+        
         me.callParent([config]);
         label = me.label;
         if (me.roundToDecimal === false) {
             return;
         }
-        if (label.renderer) {
-            f = label.renderer;
-            label.renderer = function(v) {
-                return me.roundToDecimal( f(v), me.decimals );
-            };
-        } else {
+        if (!hasLabel) {
             label.renderer = function(v) {
                 return me.roundToDecimal(v, me.decimals);
             };
-        }
+        } 
     },
     
     roundToDecimal: function(v, dec) {
@@ -183,3 +194,4 @@ Ext.define('Ext.chart.axis.Numeric', {
         return this.calcEnds();
     }
 });
+

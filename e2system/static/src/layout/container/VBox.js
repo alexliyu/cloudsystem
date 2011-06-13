@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.layout.container.VBox
  * @extends Ext.layout.container.Box
@@ -86,5 +100,19 @@ Ext.define('Ext.layout.container.VBox', {
     perpendicularRB: 'r',
     perpendicularLeftTop: 'left',
     perpendicularRightBottom: 'right',
-    perpendicularPosition: 'x'
+    perpendicularPosition: 'x',
+    configureItem: function(item) {
+        if (item.flex) {
+            item.layoutManagedHeight = 1;
+        } else {
+            item.layoutManagedHeight = 2;
+        }
+
+        if (this.align === 'stretch' || this.align === 'stretchmax') {
+            item.layoutManagedWidth = 1;
+        } else {
+            item.layoutManagedWidth = 2;
+        }
+        this.callParent(arguments);
+    }
 });

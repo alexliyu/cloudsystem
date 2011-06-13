@@ -1,13 +1,29 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.dd.StatusProxy
  * A specialized drag proxy that supports a drop status icon, {@link Ext.Layer} styles and auto-repair.  This is the
  * default drag proxy used by all Ext.dd components.
- * @constructor
- * @param {Object} config
  */
 Ext.define('Ext.dd.StatusProxy', {
     animRepair: false,
 
+    /**
+     * Creates new StatusProxy.
+     * @param {Object} config (optional) Config object.
+     */
     constructor: function(config){
         Ext.apply(this, config);
         this.id = this.id || Ext.id();

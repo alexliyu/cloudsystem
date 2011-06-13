@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.resizer.Resizer
  * <p>Applies drag handles to an element or component to make it resizable. The
@@ -78,6 +92,18 @@ Ext.define('Ext.resizer.Resizer', {
      * @cfg {Number} width Optional. The width to set the target to in pixels (defaults to null)
      */
     width : null,
+
+    /**
+     * @cfg {Number} heightIncrement The increment to snap the height resize in pixels.
+     * Defaults to <code>0</code>.
+     */
+    heightIncrement : 0,
+
+    /**
+     * @cfg {Number} widthIncrement The increment to snap the width resize in pixels
+     * Defaults to <code>0</code>.
+     */
+    widthIncrement : 0,
 
     /**
      * @cfg {Number} minHeight The minimum height for the element (defaults to 20)
@@ -268,6 +294,8 @@ Ext.define('Ext.resizer.Resizer', {
             delegate: '.' + me.handleCls,
             dynamic: me.dynamic,
             preserveRatio: me.preserveRatio,
+            heightIncrement: me.heightIncrement,
+            widthIncrement: me.widthIncrement,
             minHeight: me.minHeight,
             maxHeight: me.maxHeight,
             minWidth: me.minWidth,
@@ -420,11 +448,11 @@ Ext.define('Ext.resizer.Resizer', {
         var me = this,
             handle;
         if (Ext.isIE6) {
-            handle = me.east; 
+            handle = me.east;
             if (handle) {
                 handle.setHeight(me.el.getHeight());
             }
-            handle = me.west; 
+            handle = me.west;
             if (handle) {
                 handle.setHeight(me.el.getHeight());
             }
@@ -432,3 +460,4 @@ Ext.define('Ext.resizer.Resizer', {
         }
     }
 });
+

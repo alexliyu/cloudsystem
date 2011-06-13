@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.menu.DatePicker
  * @extends Ext.menu.Menu
@@ -10,32 +24,33 @@
  * Applying {@link Ext.picker.Date DatePicker} configuration settings to
  * <b><tt>this</tt></b> will <b>not</b> affect the DatePicker's configuration.</li>
  * </ul></div>
+ *
  * {@img Ext.menu.DatePicker/Ext.menu.DatePicker.png Ext.menu.DatePicker component}
+ *
  * __Example Usage__
-     var dateMenu = Ext.create('Ext.menu.DatePicker', {
-        handler: function(dp, date){
-            Ext.Msg.alert('Date Selected', 'You choose {0}.', Ext.Date.format(date, 'M j, Y'));
-
-        }
-    });
-
-    Ext.create('Ext.menu.Menu', {
-		width: 100,
-		height: 90,
-		floating: false,  // usually you want this set to True (default)
-		renderTo: Ext.getBody(),  // usually rendered by it's containing component
-		items: [{
-		    text: 'choose a date',
-		    menu: dateMenu
-		},{
-            iconCls: 'add16',
-		    text: 'icon item'
-		},{
-		    text: 'regular item'
-		}]
-	});
-
- * @xtype datemenu
+ *
+ *     var dateMenu = Ext.create('Ext.menu.DatePicker', {
+ *         handler: function(dp, date){
+ *             Ext.Msg.alert('Date Selected', 'You choose {0}.', Ext.Date.format(date, 'M j, Y'));
+ *         }
+ *     });
+ *  
+ *     Ext.create('Ext.menu.Menu', {
+ *         width: 100,
+ *         height: 90,
+ *         floating: false,  // usually you want this set to True (default)
+ *         renderTo: Ext.getBody(),  // usually rendered by it's containing component
+ *         items: [{
+ *             text: 'choose a date',
+ *             menu: dateMenu
+ *         },{
+ *             iconCls: 'add16',
+ *             text: 'icon item'
+ *         },{
+ *             text: 'regular item'
+ *         }]
+ *     });
+ *
  * @author Nicolas Ferrero
  */
  Ext.define('Ext.menu.DatePicker', {
@@ -86,6 +101,8 @@
         Ext.apply(me, {
             showSeparator: false,
             plain: true,
+            border: false,
+            bodyPadding: 0, // remove the body padding from the datepicker menu item so it looks like 3.3
             items: Ext.applyIf({
                 cls: Ext.baseCSSPrefix + 'menu-date-item',
                 id: me.pickerId,

@@ -1,12 +1,23 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.tip.Tip
  * @extends Ext.panel.Panel
  * This is the base class for {@link Ext.tip.QuickTip} and {@link Ext.tip.ToolTip} that provides the basic layout and
  * positioning that all tip-based classes require. This class can be used directly for simple, statically-positioned
  * tips that are displayed programmatically, or it can be extended to provide custom tip implementations.
- * @constructor
- * Create a new Tip
- * @param {Object} config The configuration options
  * @xtype tip
  */
 Ext.define('Ext.tip.Tip', {
@@ -63,6 +74,23 @@ Ext.define('Ext.tip.Tip', {
     focusOnToFront: false,
     componentLayout: 'tip',
 
+    /**
+     * @cfg {String} closeAction
+     * <p>The action to take when the close header tool is clicked:
+     * <div class="mdetail-params"><ul>
+     * <li><b><code>'{@link #destroy}'</code></b> : <div class="sub-desc">
+     * {@link #destroy remove} the window from the DOM and {@link Ext.Component#destroy destroy}
+     * it and all descendant Components. The window will <b>not</b> be available to be
+     * redisplayed via the {@link #show} method.
+     * </div></li>
+     * <li><b><code>'{@link #hide}'</code></b> : <b>Default</b><div class="sub-desc">
+     * {@link #hide} the window by setting visibility to hidden and applying negative offsets.
+     * The window will be available to be redisplayed via the {@link #show} method.
+     * </div></li>
+     * </ul></div>
+     * <p><b>Note:</b> This behavior has changed! setting *does* affect the {@link #close} method
+     * which will invoke the approriate closeAction.
+     */
     closeAction: 'hide',
 
     ariaRole: 'tooltip',
@@ -134,3 +162,4 @@ tip.showBy('my-el', 'tl-tr');
     ghost: undefined,
     unghost: undefined
 });
+

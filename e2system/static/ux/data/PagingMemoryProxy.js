@@ -1,4 +1,17 @@
-Ext.ns('Ext.ux.data');
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.ux.data.PagingMemoryProxy
  * @extends Ext.data.proxy.Memory
@@ -7,11 +20,14 @@ Ext.ns('Ext.ux.data');
 Ext.define('Ext.ux.data.PagingMemoryProxy', {
     extend: 'Ext.data.proxy.Memory',
     alias: 'proxy.pagingmemory',
+    alternateClassName: 'Ext.data.PagingMemoryProxy',
+
     read : function(operation, callback, scope){
         var reader = this.getReader(),
             result = reader.read(this.data),
             sorters, filters, sorterFn, records;
 
+        scope = scope || this;
         // filtering
         filters = operation.filters;
         if (filters.length > 0) {
@@ -37,6 +53,7 @@ Ext.define('Ext.ux.data.PagingMemoryProxy', {
             }, this);
 
             result.records = records;
+            result.totalRecords = result.total = records.length;
         }
         
         // sorting
@@ -62,6 +79,7 @@ Ext.define('Ext.ux.data.PagingMemoryProxy', {
         // paging (use undefined cause start can also be 0 (thus false))
         if (operation.start !== undefined && operation.limit !== undefined) {
             result.records = result.records.slice(operation.start, operation.start + operation.limit);
+            result.count = result.records.length;
         }
 
         Ext.apply(operation, {
@@ -71,9 +89,9 @@ Ext.define('Ext.ux.data.PagingMemoryProxy', {
         operation.setCompleted();
         operation.setSuccessful();
 
-        Ext.callback(callback, scope || me, [operation]);
+        Ext.Function.defer(function () {
+            Ext.callback(callback, scope, [operation]);
+        }, 10);
     }
 });
 
-//backwards compat.
-Ext.data.PagingMemoryProxy = Ext.ux.data.PagingMemoryProxy;

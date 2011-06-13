@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.layout.component.AbstractDock
  * @extends Ext.layout.component.Component
@@ -145,6 +159,8 @@ Ext.define('Ext.layout.component.AbstractDock', {
             },
             bodyBox: {}
         };
+        // Clear isAutoDock flag
+        delete layout.isAutoDock;
 
         Ext.applyIf(info, me.getTargetInfo());
 
@@ -190,6 +206,8 @@ Ext.define('Ext.layout.component.AbstractDock', {
             if (layout && layout.isLayout) {
                 // Auto-Sized so have the container layout notify the component layout.
                 layout.bindToOwnerCtComponent = true;
+                // Set flag so we don't do a redundant container layout
+                layout.isAutoDock = layout.autoSize !== true;
                 layout.layout();
 
                 // If this is an autosized container layout, then we must compensate for a
@@ -423,6 +441,7 @@ Ext.define('Ext.layout.component.AbstractDock', {
      */
     adjustAutoBox : function (box, index) {
         var info = this.info,
+            owner = this.owner,
             bodyBox = info.bodyBox,
             size = info.size,
             boxes = info.boxes,
@@ -453,33 +472,43 @@ Ext.define('Ext.layout.component.AbstractDock', {
                 box.y = bodyBox.y;
                 if (!box.overlay) {
                     bodyBox.y += box.height;
+                    if (owner.isFixedHeight()) {
+                        bodyBox.height -= box.height;
+                    } else {
+                        size.height += box.height;
+                    }
                 }
-                size.height += box.height;
                 break;
 
             case 'bottom':
+                if (!box.overlay) {
+                    if (owner.isFixedHeight()) {
+                        bodyBox.height -= box.height;
+                    } else {
+                        size.height += box.height;
+                    }
+                }
                 box.y = (bodyBox.y + bodyBox.height);
-                size.height += box.height;
                 break;
 
             case 'left':
                 box.x = bodyBox.x;
                 if (!box.overlay) {
                     bodyBox.x += box.width;
-                    if (autoSizedCtLayout) {
-                        size.width += box.width;
-                    } else {
+                    if (owner.isFixedWidth()) {
                         bodyBox.width -= box.width;
+                    } else {
+                        size.width += box.width;
                     }
                 }
                 break;
 
             case 'right':
                 if (!box.overlay) {
-                    if (autoSizedCtLayout) {
-                        size.width += box.width;
-                    } else {
+                    if (owner.isFixedWidth()) {
                         bodyBox.width -= box.width;
+                    } else {
+                        size.width += box.width;
                     }
                 }
                 box.x = (bodyBox.x + bodyBox.width);
@@ -698,6 +727,13 @@ Ext.define('Ext.layout.component.AbstractDock', {
      */
     configureItem : function(item, pos) {
         this.callParent(arguments);
+        if (item.dock == 'top' || item.dock == 'bottom') {
+            item.layoutManagedWidth = 1;
+            item.layoutManagedHeight = 2;
+        } else {
+            item.layoutManagedWidth = 2;
+            item.layoutManagedHeight = 1;
+        }
         
         item.addCls(Ext.baseCSSPrefix + 'docked');
         item.addClsWithUI('docked-' + item.dock);

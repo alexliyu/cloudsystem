@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.window.Window
  * @extends Ext.panel.Panel
@@ -26,9 +40,6 @@ Ext.create('Ext.window.Window', {
     }
 }).show();
 </pre></code>
- * @constructor
- * @param {Object} config The config object
- * @xtype window
  */
 Ext.define('Ext.window.Window', {
     extend: 'Ext.panel.Panel',
@@ -499,8 +510,18 @@ Ext.define('Ext.window.Window', {
 
     // private
     afterShow: function(animateTarget) {
-        var me = this;
+        var me = this,
+            animating = animateTarget || me.animateTarget;
 
+        
+        if (animating) {
+            /*
+             * If we're animating, constrain the positioning before calling the
+             * superclass, otherwise we'll be animating to the unconstrained
+             * window position.
+             */
+            me.doConstrain();
+        }
         // Perform superclass's afterShow tasks
         // Which might include animating a proxy from an animTarget
         me.callParent(arguments);
@@ -510,7 +531,9 @@ Ext.define('Ext.window.Window', {
         }
 
         me.syncMonitorWindowResize();
-        me.doConstrain();
+        if (!animating) {
+            me.doConstrain();
+        }
 
         if (me.keyMap) {
             me.keyMap.enable();

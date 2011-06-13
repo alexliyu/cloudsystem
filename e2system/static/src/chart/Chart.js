@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.chart.Chart
  * @extends Ext.draw.Component
@@ -29,10 +43,7 @@
  * select a color theme `Category1` for coloring the series, set the legend to the right part of the chart and
  * then tell the chart to render itself in the body element of the document. For more information about the axes and
  * series configurations please check the documentation of each series (Line, Bar, Pie, etc).
- *
- * @xtype chart
  */
-
 Ext.define('Ext.chart.Chart', {
 
     /* Begin Definitions */
@@ -754,3 +765,4 @@ Ext.define('Ext.chart.Chart', {
         this.callParent(arguments);
     }
 });
+

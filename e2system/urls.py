@@ -23,3 +23,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     (r'^$', 'e2system.kernel.views.e2_login_view'),
 )
+
+urlpatterns += patterns('django.contrib.staticfiles.views',
+        url(r'^static/(?P<path>.*)$', 'serve'),
+        url(r'^media/(?P<path>.*)$', 'serve'),
+        )

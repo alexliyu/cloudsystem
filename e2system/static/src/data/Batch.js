@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @author Ed Spencer
  * @class Ext.data.Batch
@@ -8,8 +22,6 @@
  * 
  * <p>Usually these are only used internally by {@link Ext.data.proxy.Proxy} classes</p>
  * 
- * @constructor
- * @param {Object} config Optional config object
  */
 Ext.define('Ext.data.Batch', {
     mixins: {
@@ -65,6 +77,10 @@ Ext.define('Ext.data.Batch', {
      */
     pauseOnException: true,
     
+    /**
+     * Creates new Batch object.
+     * @param {Object} config (optional) Config object
+     */
     constructor: function(config) {   
         var me = this;
                      

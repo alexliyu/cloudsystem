@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.data.Tree
  * 
@@ -9,8 +23,6 @@
  * centralized fashion. In general this class is not used directly, rather used internally 
  * by other parts of the framework.
  *
- * @constructor
- * @param {Node} root (optional) The root node
  */
 Ext.define('Ext.data.Tree', {
     alias: 'data.tree',
@@ -24,7 +36,11 @@ Ext.define('Ext.data.Tree', {
      * @type Node
      */
     root: null,
-        
+
+    /**
+     * Creates new Tree object.
+     * @param {Node} root (optional) The root node
+     */
     constructor: function(root) {
         var me = this;
         

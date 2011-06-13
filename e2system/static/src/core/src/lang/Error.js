@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.Error
  * @private
@@ -56,7 +70,7 @@ If a console is available (that supports the `console.dir` function) you'll see 
 As you can see, the error will report exactly where it was raised and will include as much information as the
 raising code can usefully provide.
 
-If you want to handle all application errors globally you can simply override the static {@link handle} method
+If you want to handle all application errors globally you can simply override the static {@link #handle} method
 and provide whatever handling logic you need. If the method returns true then the error is considered handled
 and will not be thrown to the browser. If anything but true is returned then the error will be thrown normally.
 
@@ -207,7 +221,6 @@ error to the browser, otherwise the error will be thrown and execution will halt
     name: 'Ext.Error',
 
     /**
-     * @constructor
      * @param {String/Object} config The error message string, or an object containing the
      * attribute "msg" that will be used as the error message. Any other data included in
      * the object will be applied to the error instance and logged to the browser console, if available.
@@ -322,3 +335,4 @@ a particular error instance, if you want to provide a custom description that wi
     poll();
 })();
 //</debug>
+

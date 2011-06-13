@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.fx.target.Target
 
@@ -9,20 +23,22 @@ underlying animation will create the appropriate Ext.fx.target.Target object by 
 the instance to be animated.
 
 The following types of objects can be animated:
-- {@link #Ext.fx.target.Component Components}
-- {@link #Ext.fx.target.Element Elements}
-- {@link #Ext.fx.target.Sprite Sprites}
+
+- {@link Ext.fx.target.Component Components}
+- {@link Ext.fx.target.Element Elements}
+- {@link Ext.fx.target.Sprite Sprites}
 
  * @markdown
  * @abstract
- * @constructor
- * @param {Mixed} target The object to be animated
  */
-
 Ext.define('Ext.fx.target.Target', {
 
     isAnimTarget: true,
 
+    /**
+     * Creates new Target.
+     * @param {Mixed} target The object to be animated
+     */
     constructor: function(target) {
         this.target = target;
         this.id = this.getId();
@@ -32,3 +48,4 @@ Ext.define('Ext.fx.target.Target', {
         return this.target.id;
     }
 });
+

@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.util.KeyNav
  * <p>Provides a convenient wrapper for normalized keyboard navigation.  KeyNav allows you to bind
@@ -19,9 +33,6 @@ var nav = new Ext.util.KeyNav("my-element", {
     scope : this
 });
 </code></pre>
- * @constructor
- * @param {Mixed} el The element to bind to
- * @param {Object} config The config
  */
 Ext.define('Ext.util.KeyNav', {
     
@@ -47,7 +58,12 @@ Ext.define('Ext.util.KeyNav', {
             tab: 9
         }
     },
-    
+
+    /**
+     * Creates new KeyNav.
+     * @param {Mixed} el The element to bind to
+     * @param {Object} config The config
+     */
     constructor: function(el, config){
         this.setConfig(el, config || {});
     },
@@ -164,3 +180,4 @@ Ext.define('Ext.util.KeyNav', {
         return (forceKeyDown || Ext.EventManager.useKeyDown) ? 'keydown' : 'keypress';
     }
 });
+

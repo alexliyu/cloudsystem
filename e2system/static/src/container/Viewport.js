@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.container.Viewport
  * @extends Ext.container.Container
@@ -67,11 +81,7 @@ An example showing a classic application border layout:
         }]
     });
 
- * @constructor
- * Create a new Viewport
- * @param {Object} config The config object
  * @markdown
- * @xtype viewport
  */
 Ext.define('Ext.container.Viewport', {
     extend: 'Ext.container.Container',
@@ -136,15 +146,15 @@ Ext.define('Ext.container.Viewport', {
         el.setSize = Ext.emptyFn;
         el.dom.scroll = 'no';
         me.allowDomMove = false;
-        //this.autoWidth = true;
-        //this.autoHeight = true;
         Ext.EventManager.onWindowResize(me.fireResize, me);
         me.renderTo = me.el;
+        me.width = Ext.core.Element.getViewportWidth();
+        me.height = Ext.core.Element.getViewportHeight();
     },
 
     fireResize : function(w, h){
         // setSize is the single entry point to layouts
         this.setSize(w, h);
-        //this.fireEvent('resize', this, w, h, w, h);
     }
 });
+

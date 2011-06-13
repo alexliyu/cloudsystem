@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.picker.Color
  * @extends Ext.Component
@@ -18,11 +32,6 @@ cp.on('select', function(picker, selColor){
 </code></pre>
  * {@img Ext.picker.Color/Ext.picker.Color.png Ext.picker.Color component}
  *
- * @constructor
- * Create a new ColorPicker
- * @param {Object} config The config object
- * 
- * @xtype colorpicker
  */
 Ext.define('Ext.picker.Color', {
     extend: 'Ext.Component',
@@ -213,3 +222,4 @@ cp.colors = ['000000', '993300', '333300'];
         return this.value || null;
     }
 });
+

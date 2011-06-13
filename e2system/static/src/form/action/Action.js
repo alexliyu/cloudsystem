@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.form.action.Action
  * @extends Ext.Base
@@ -11,8 +25,6 @@
  * {@link Ext.form.Basic#load load} and {@link Ext.form.Basic#doAction doAction}),
  * and to the {@link Ext.form.Basic#actioncomplete actioncomplete} and
  * {@link Ext.form.Basic#actionfailed actionfailed} event handlers.</p>
- * @constructor
- * @param {Object} config The configuration for this instance.
  */
 Ext.define('Ext.form.action.Action', {
     alternateClassName: 'Ext.form.Action',
@@ -162,8 +174,10 @@ buttons: [{
      * @type {Object}
      */
 
-
-
+    /**
+     * Creates new Action.
+     * @param {Object} config (optional) Config object.
+     */
     constructor: function(config) {
         if (config) {
             Ext.apply(this, config);
@@ -312,3 +326,4 @@ buttons: [{
 
     }
 });
+

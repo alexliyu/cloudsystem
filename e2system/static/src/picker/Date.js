@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.picker.Date
  * @extends Ext.Component
@@ -25,11 +39,6 @@
 });</code></pre>
  * {@img Ext.picker.Date/Ext.picker.Date.png Ext.picker.Date component}
  *
- * @constructor
- * Create a new DatePicker
- * @param {Object} config The config object
- *
- * @xtype datepicker
  */
 Ext.define('Ext.picker.Date', {
     extend: 'Ext.Component',
@@ -641,6 +650,7 @@ Ext.define('Ext.picker.Date', {
                 renderTo: me.el,
                 floating: true,
                 shadow: false,
+                small: me.showToday === false,
                 listeners: {
                     scope: me,
                     cancelclick: me.onCancelClick,
@@ -992,3 +1002,4 @@ function() {
 
     proto.format = Ext.Date.defaultFormat;
 });
+

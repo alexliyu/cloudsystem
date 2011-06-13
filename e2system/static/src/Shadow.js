@@ -1,15 +1,30 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.Shadow
  * Simple class that can provide a shadow effect for any element.  Note that the element MUST be absolutely positioned,
  * and the shadow does not provide any shimming.  This should be used only in simple cases -- for more advanced
  * functionality that can also provide the same shadow effect, see the {@link Ext.Layer} class.
- * @constructor
- * Create a new Shadow
- * @param {Object} config The config object
  */
 Ext.define('Ext.Shadow', {
     requires: ['Ext.ShadowPool'],
 
+    /**
+     * Creates new Shadow.
+     * @param {Object} config (optional) Config object.
+     */
     constructor: function(config) {
         Ext.apply(this, config);
         if (typeof this.mode != "string") {

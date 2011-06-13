@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.Layer
  * @extends Ext.core.Element
@@ -24,9 +38,6 @@
  * <li><code>'offsets'</code> : The Component will be hidden by absolutely positioning it out of the visible area of the document. This
  * is useful when a hidden Component must maintain measurable dimensions. Hiding using <code>display</code> results
  * in a Component having zero dimensions.</li></ul></div>
- * @constructor
- * @param {Object} config An object with config options.
- * @param {String/HTMLElement} existingEl (optional) Uses an existing DOM element. If the element is not found it creates it.
  */
 Ext.define('Ext.Layer', {
     uses: ['Ext.Shadow'],
@@ -38,6 +49,12 @@ Ext.define('Ext.Layer', {
 
     extend: 'Ext.core.Element',
 
+    /**
+     * Creates new Layer.
+     * @param {Object} config (optional) An object with config options.
+     * @param {String/HTMLElement} existingEl (optional) Uses an existing DOM element.
+     * If the element is not found it creates it.
+     */
     constructor: function(config, existingEl) {
         config = config || {};
         var me = this,
@@ -464,3 +481,4 @@ Ext.define('Ext.Layer', {
         return this;
     }
 });
+

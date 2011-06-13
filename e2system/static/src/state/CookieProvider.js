@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 /**
  * @class Ext.state.CookieProvider
  * @extends Ext.state.Provider
@@ -26,13 +40,14 @@
  * all sub-domains if you need to access cookies across different sub-domains (defaults to null which uses the same
  * domain the page is running on including the 'www' like 'www.sencha.com')
  * @cfg {Boolean} secure True if the site is using SSL (defaults to false)
- * @constructor
- * Create a new CookieProvider
- * @param {Object} config The configuration object
  */
 Ext.define('Ext.state.CookieProvider', {
     extend: 'Ext.state.Provider',
 
+    /**
+     * Creates a new CookieProvider.
+     * @param {Object} config (optional) Config object.
+     */
     constructor : function(config){
         var me = this;
         me.path = "/";
@@ -103,3 +118,4 @@ Ext.define('Ext.state.CookieProvider', {
            ((me.secure == true) ? "; secure" : "");
     }
 });
+

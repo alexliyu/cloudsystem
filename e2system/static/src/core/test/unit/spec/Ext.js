@@ -1,3 +1,17 @@
+/*
+
+This file is part of Ext JS 4
+
+Copyright (c) 2011 Sencha Inc
+
+Contact:  http://www.sencha.com/contact
+
+Commercial Usage
+Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+
+If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
+
+*/
 describe("Ext", function() {
     
     describe("Ext.global", function() {
@@ -978,7 +992,7 @@ describe("Ext", function() {
     describe("Ext.isFunction", function() {
         beforeEach(function() {
             // add global variable in whitelist
-            addGlobal("ExtSandbox1");
+            addGlobal("ExtBox1");
         });
 
         it("should return true with anonymous function", function() {
@@ -1538,7 +1552,8 @@ describe("Ext", function() {
     
     describe('getUniqueGlobalNamespace', function() {
         it("should return an unique global namespace", function() {
-            expect(Ext.getUniqueGlobalNamespace()).toBe("ExtSandbox1"); 
+            expect(Ext.getUniqueGlobalNamespace()).toBe("ExtBox1"); 
         });
     });
 });
+
