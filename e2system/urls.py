@@ -1,6 +1,9 @@
 from django.conf.urls.defaults import patterns, include, url
 import os
 from django.contrib import admin
+from djangorestframework.resources import ModelResource
+from djangorestframework.views import ListOrCreateModelView, InstanceModelView
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
