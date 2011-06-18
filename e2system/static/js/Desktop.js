@@ -24,6 +24,9 @@ If you are unsure which license is appropriate for your use, please contact the 
  * @extends Ext.panel.Panel
  * <p>This class manages the wallpaper, shortcuts and taskbar.</p>
  */
+ 
+
+    
 Ext.define('Ext.ux.desktop.Desktop', {
     extend: 'Ext.panel.Panel',
 
@@ -112,10 +115,10 @@ Ext.define('Ext.ux.desktop.Desktop', {
         ];
 
         me.callParent();
-
+        
         me.shortcutsView = me.items.getAt(1);
-        me.shortcutsView.on('itemclick', me.onShortcutItemClick, me);
-
+        me.shortcutsView.on('itemdblclick', me.onShortcutItemClick, me);
+       
         var wallpaper = me.wallpaper;
         me.wallpaper = me.items.getAt(0);
         if (wallpaper) {
@@ -138,9 +141,15 @@ Ext.define('Ext.ux.desktop.Desktop', {
             xtype: 'dataview',
             overItemCls: 'x-view-over',
             trackOver: true,
+            id:'E2system-desktopbase',
             itemSelector: me.shortcutItemSelector,
             store: me.shortcuts,
-            tpl: new Ext.XTemplate(me.shortcutTpl)
+            tpl: new Ext.XTemplate(me.shortcutTpl),
+          
+           listeners: {
+                afterrender: initializePatientDragZone
+        }
+        	
         };
     },
 
@@ -444,5 +453,132 @@ Ext.define('Ext.ux.desktop.Desktop', {
 
         me.taskbar.setActiveButton(activeWindow && activeWindow.taskButton);
     }
+
 });
+
+function initializePatientDragZone(v) {
+    var overrides = {
+        // Only called when element is dragged over the a dropzone with the same ddgroup
+        onDragEnter : function(evtObj, targetElId) {
+            // Colorize the drag target if the drag node's parent is not the same as the drop target
+            var dropEl = Ext.get(targetElId);
+            if (evtObj.xy[0]<dropEl.dom.offsetWidth-20 && evtObj.xy[1]<dropEl.dom.offsetHeight-20) {
+                this.el.addCls('dropOK');
+            }
+            else {
+                // Remove the invitation
+                this.onDragOut();
+            }
+        },
+        // Only called when element is dragged out of a dropzone with the same ddgroup
+        onDragOut : function(evtObj, targetElId) {
+            this.el.removeCls('dropOK');
+        },
+        //Called when mousedown for a specific amount of time
+        b4StartDrag : function() {
+            if (!this.el) {
+                this.el = Ext.get(this.getEl());
+            }
+            //this.el.highlight();
+            //Cache the original XY Coordinates of the element, we'll use this later.
+            this.originalXY = this.el.getXY();
+        },
+        // Called when element is dropped not anything other than a
+        // dropzone with the same ddgroup
+        onInvalidDrop : function() {
+            this.invalidDrop = true;
+ 
+        },
+        endDrag : function() {
+            if (this.invalidDrop === true) {
+                this.el.removeCls('dropOK');
+ 
+                var animCfgObj = {
+                    easing   : 'elasticOut',
+                    duration : 1,
+                    scope    : this,
+                    callback : function() {
+                        this.el.dom.style.position = '';
+                    }
+                };
+                this.el.moveTo(this.originalXY[0], this.originalXY[1], animCfgObj);
+                delete this.invalidDrop;
+            }
+ 
+        },
+        // Called upon successful drop of an element on a DDTarget with the same
+        onDragDrop : function(evtObj, targetElId) {
+            // Wrap the drop target element with Ext.Element
+            var dropEl = Ext.get(targetElId);
+ 
+            // Perform the node move only if the drag element's parent is not the same as the drop target
+            if (evtObj.xy[0]<dropEl.dom.offsetWidth-20 && evtObj.xy[1]<dropEl.dom.offsetHeight-20) {
+ 
+                // Move the element
+                //dropEl.appendChild(this.el);
+                 var animCfgObj = {
+                    easing   : 'elasticOut',
+                    duration : 1,
+                    scope    : this,
+                    callback : function() {
+                        this.el.dom.style.position = '';
+                    }
+                };
+                this.el.moveTo(evtObj.xy[0],evtObj.xy[1],animCfgObj);
+              
+                // Remove the drag invitation
+                this.onDragOut(evtObj, targetElId);
+ 
+                // Clear the styles
+                
+            }
+            else {
+                // This was an invalid drop, lets call onInvalidDrop to initiate a repair
+                this.onInvalidDrop();
+            }
+        }
+    };
+ 
+    // 遍历所有的图标，设置拖动属性以及初始化坐标
+    var Elements = v.el.select(v.itemSelector);
+    Ext.each(Elements.elements, function(el) {
+        var dd = new Ext.dd.DD(el, 'DDGroup', {
+            isTarget  : false
+        });
+        Ext.apply(dd, overrides);
+        var tmpel=Ext.get(el);
+        var left=10;
+        var top=5;
+        //如果当前节点有前一个节点
+        if (el.previousSibling){
+            
+            if (this.offsetParent.offsetHeight>el.previousSibling.offsetHeight+el.previousSibling.offsetTop+el.offsetHeight){
+                tmpel.setLeftTop(el.previousElementSibling.style.left,el.previousSibling.offsetHeight+el.previousSibling.offsetTop);    
+            }
+            else{
+                left=left+el.previousElementSibling.offsetLeft+el.previousElementSibling.offsetWidth;
+                tmpel.setLeftTop(left,top);    
+            }
+            
+        }
+        else{
+            tmpel=Ext.get(el);
+            tmpel.setLeftTop(left,top);
+            
+        };
+        Ext.apply(tmpel);
+    });
+ 
+ 
+    //Instantiate instances of Ext.dd.DDTarget for the cars and trucks container
+    var carsDDTarget    = new Ext.dd.DDTarget('E2system-desktopbase','DDGroup');
+    
+ 
+    //Instantiate instnaces of DDTarget for the rented and repair drop target elements
+    var rentedDDTarget = new Ext.dd.DDTarget('E2system-desktopbase', 'DDGroup');
+ 
+  
+};
+
+   
 
